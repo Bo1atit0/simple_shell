@@ -25,6 +25,7 @@ int hsh(int ac, char **argv, char **env)
 
 	while (1)
 	{
+		signal(SIGINT, handle_sig);
 		if (interactive_or_not())
 		{
 			printf("$ ");

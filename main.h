@@ -53,6 +53,7 @@ char *env_opt(char **env, char *str);
 /** get_input.c **/
 int _getline(structo *);
 int interactive_or_not(void);
+void handle_sig(int it);
 
 /** my_builtins.c **/
 int _my_env(structo *container, char **env);

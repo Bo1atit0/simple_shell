@@ -45,3 +45,22 @@ int interactive_or_not(void)
 {
 	return (isatty(STDIN_FILENO));
 }
+
+
+/**
+ * handle_sig - handle signals
+ * @it: int
+ */
+void handle_sig(int it)
+{
+	int x = 0;
+
+	if (it == SIGINT)
+	{
+		x = write(STDOUT_FILENO, "\n$ ", 3);
+		if (x == -1)
+		{
+			;
+		}
+	}
+}
