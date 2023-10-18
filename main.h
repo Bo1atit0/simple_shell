@@ -15,7 +15,14 @@
 #include <limits.h>
 
 
-
+/**
+ * struct formation - my container
+ * @input: a pointer to the input from user
+ * @parsed: parsed input
+ * @inst: instrunctions
+ * @exit: exitstatus
+ * @args: arguments
+ */
 typedef struct formation
 {
 char *input;
@@ -23,14 +30,19 @@ char **parsed;
 char *inst;
 int exit;
 int args;
-}structo;
+} structo;
 
 
+/**
+ * struct specifiers - for builtins
+ * @symbol: symbol
+ * @func: function
+ */
 typedef struct specifiers
 {
 char *symbol;
 int (*func)(structo *, char **);
-}spec;
+} spec;
 
 /** for prompt.c **/
 int hsh(int, char **, char **);
@@ -50,7 +62,7 @@ int _my_exit(structo *container, char **env);
 
 /** shell_commands.c **/
 void shell_loop(structo *container, char **env);
-int executor(int, char **, structo *,char **);
+int executor(int, char **, structo *, char **);
 int found_command(structo *container, char **env);
 void for_parsed(structo *container, char **env);
 
