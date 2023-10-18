@@ -15,12 +15,9 @@
 int hsh(int ac, char **argv, char **env)
 {
 	structo container[] = {{NULL}, {NULL}, {NULL}, {0}, {0}};
-	int x; /**ret;**/
-	int line, parse_ret; /** executor_ret = 0; **/
-
+	int x, line, parse_ret; /** executor_ret = 0; **/
 
 	(void)argv;
-
 	if (ac == 2)
 	{
 		/** set_readfd(structure, argv); **/
@@ -43,31 +40,18 @@ int hsh(int ac, char **argv, char **env)
 			/* handle error */
 		}
 		if (*container->input == '\n' || *container->input == '\0')
-		{
 			continue;
-		}
 		parse_ret = parse_line(container);
 		if (parse_ret == -1)
-		{
 			/** handler error **/
-		}
-
 		for (x = 0; container->parsed[x]; x++)
-		{
 			;
-		}
-
 		container->args = x;
-
 		executor(ac, argv, container, env);
 		for (x = 0; container->parsed[x]; x++)
-		{
 			free(container->parsed[x]);
-		}
-		free(container->parsed);
-		free(container->input);
+		free(container->parsed), free(container->input);
 	}
-
 	return (0);
 }
 
