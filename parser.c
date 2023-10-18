@@ -16,40 +16,40 @@
 
 int parse_line(structo *container)
 {
-char *parsed;
-char *dup;
-int x;
+	char *parsed;
+	char *dup;
+	int x;
 
-if (!container->input)
-{
-return (1);
-}
+	if (!container->input)
+	{
+		return (1);
+	}
 
-dup = strdup(container->input);
+	dup = strdup(container->input);
 
-parsed = strtok(dup, " \n\t");
-x = 0;
-while (parsed != NULL)
-{
-x++;
-parsed = strtok(NULL, " \n\t");
-}
-x++;
-free(dup);
+	parsed = strtok(dup, " \n\t");
+	x = 0;
+	while (parsed != NULL)
+	{
+		x++;
+		parsed = strtok(NULL, " \n\t");
+	}
+	x++;
+	free(dup);
 
 
-container->parsed = malloc(sizeof(char *) * x);
+	container->parsed = malloc(sizeof(char *) * x);
 
-parsed = strtok(container->input, " \n\t");
-for (x = 0; parsed != NULL; x++)
-{
-container->parsed[x] = duplicate(parsed);
-parsed = strtok(NULL, " \n\t");
-}
+	parsed = strtok(container->input, " \n\t");
+	for (x = 0; parsed != NULL; x++)
+	{
+		container->parsed[x] = duplicate(parsed);
+		parsed = strtok(NULL, " \n\t");
+	}
 
-container->parsed[x] = NULL;
+	container->parsed[x] = NULL;
 
-return (0);
+	return (0);
 }
 
 /**
@@ -64,18 +64,17 @@ return (0);
 
 char *duplicate(char *str)
 {
-char *ptr = malloc(sizeof(char) * strlen(str) + 1);
-int x = 0;
-int y = 0;
+	char *ptr = malloc(sizeof(char) * strlen(str) + 1);
+	int x = 0;
+	int y = 0;
 
-while (str[x])
-{
-ptr[y++] = str[x++];
-}
+	while (str[x])
+	{
+		ptr[y++] = str[x++];
+	}
+	ptr[y] = '\0';
 
-ptr[y] = '\0';
-
-return (ptr);
+	return (ptr);
 }
 
 /**
@@ -92,9 +91,9 @@ return (ptr);
 
 void substitute(char **str, char *call)
 {
-free(*str);
+	free(*str);
 
-*str = duplicate(call);
+	*str = duplicate(call);
 }
 
 /**
@@ -111,31 +110,31 @@ free(*str);
 
 char *converter_to_strings(long int x, int base)
 {
-static char *array = "0123456789abcdef";
-static char arr[50];
-char *str;
-char sym = 0;
-unsigned long num = x;
+	static char *array = "0123456789abcdef";
+	static char arr[50];
+	char *str;
+	char sym = 0;
+	unsigned long num = x;
 
-if (x < 0)
-{
-num = -x;
-sym = '-';
-}
+	if (x < 0)
+	{
+		num = -x;
+		sym = '-';
+	}
 
-str = &arr[49];
-*str = '\0';
+	str = &arr[49];
+	*str = '\0';
 
-while (num != 0)
-{
-*--str = array[num % base];
-num /= base;
-}
+	while (num != 0)
+	{
+		*--str = array[num % base];
+		num /= base;
+	}
 
-if (sym == '-')
-{
-*--str = sym;
-}
+	if (sym == '-')
+	{
+		*--str = sym;
+	}
 
-return (str);
+	return (str);
 }
