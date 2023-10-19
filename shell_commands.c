@@ -54,7 +54,7 @@ if (strcmp(container->parsed[0], "echo") == 0)
 for_parsed(container, env);
 }
 
-ret = specifiers(container, env);
+ret = specifiers(container,env);
 if (ret == -1)
 {
 ret = found_command(container, env);
@@ -62,7 +62,7 @@ if (ret == -1)
 {
 perror("./hsh");
 }
-else if (ret == 2)
+else if (ret == 1)
 {
 return (ret);
 }
@@ -91,8 +91,14 @@ container->inst = command(env, container->parsed[0]);
 if (container->inst != NULL)
 {
 shell_loop(container, env);
+if (strcmp(container->inst, container->parsed[0]) == 0)
+{
+return (1);
+}
 return (0);
 }
+
+
 
 return (-1);
 
