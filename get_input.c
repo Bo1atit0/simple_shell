@@ -25,7 +25,7 @@ int _getline(structo *container)
 
 	for (y = 0; strint[y]; y++)
 	{
-		if (strint[y] == '#')
+		if (strint[y] == '#' && strint[y++] == ' ')
 		{
 			strint[y] = '\0';
 		}
