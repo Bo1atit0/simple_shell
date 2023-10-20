@@ -15,7 +15,7 @@
 int hsh(int ac, char **argv, char **env)
 {
 	structo container[] = {{NULL}, {NULL}, {NULL}, {0}, {0}};
-	int x, line, parse_ret; /** executor_ret = 0; **/
+	int x, line, parse_ret, executor_ret = 0;
 
 	(void)argv;
 	while (1)
@@ -48,10 +48,10 @@ int hsh(int ac, char **argv, char **env)
 		for (x = 0; container->parsed[x]; x++)
 			;
 		container->args = x;
-		executor(ac, argv, container, env);
-		release(container);
-		if (!interactive_or_not())
-			exit(container->exit);
+		executor_ret = executor(ac, argv, container, env), release(container);
+		if (executor_ret == 2)
+			if (!interactive_or_not())
+				exit(container->exit);
 	}
 	return (0);
 }

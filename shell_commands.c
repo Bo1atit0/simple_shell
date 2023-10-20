@@ -62,6 +62,7 @@ if (ret == -1)
 {
 printf("./hsh: 1: %s: not found\n", container->parsed[0]);
 container->exit = 127;
+return (2);
 }
 else if (ret == 1)
 {
