@@ -41,13 +41,23 @@ int parse_line(structo *container)
 	container->parsed = malloc(sizeof(char *) * x);
 
 	parsed = strtok(container->input, " \n\t");
-	for (x = 0; parsed != NULL; x++)
+
+	if (parsed != NULL)
 	{
-		container->parsed[x] = duplicate(parsed);
-		parsed = strtok(NULL, " \n\t");
+		for (x = 0; parsed != NULL; x++)
+		{
+			container->parsed[x] = duplicate(parsed);
+			parsed = strtok(NULL, " \n\t");
+		}
+
+		container->parsed[x] = NULL;
 	}
 
-	container->parsed[x] = NULL;
+	else
+	{
+		free(container->parsed);
+		return (-1);
+	}
 
 	return (0);
 }

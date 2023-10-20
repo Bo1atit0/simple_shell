@@ -18,10 +18,6 @@ int hsh(int ac, char **argv, char **env)
 	int x, line, parse_ret; /** executor_ret = 0; **/
 
 	(void)argv;
-	if (ac == 2)
-	{
-		/** set_readfd(structure, argv); **/
-	}
 	while (1)
 	{
 		signal(SIGINT, handle_sig);
@@ -44,7 +40,12 @@ int hsh(int ac, char **argv, char **env)
 		}
 		parse_ret = parse_line(container);
 		if (parse_ret == -1)
-			/** handler error **/
+		{
+			if (!interactive_or_not())
+				printf("\n");
+			free(container->input);
+			continue;
+		}
 		for (x = 0; container->parsed[x]; x++)
 			;
 		container->args = x;
