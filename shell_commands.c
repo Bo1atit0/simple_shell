@@ -60,7 +60,8 @@ if (ret == -1)
 ret = found_command(container, env);
 if (ret == -1)
 {
-perror("./hsh");
+printf("./hsh: 1: %s: not found\n", container->parsed[0]);
+container->exit = 127;
 }
 else if (ret == 1)
 {

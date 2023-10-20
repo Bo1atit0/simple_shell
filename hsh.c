@@ -29,7 +29,6 @@ int hsh(int ac, char **argv, char **env)
 			if (interactive_or_not())
 				putchar('\n');
 			return (EXIT_FAILURE);
-			/* handle error */
 		}
 		if (*container->input == '\n' || *container->input == '\0'
 				|| *container->input == '#')
@@ -50,9 +49,9 @@ int hsh(int ac, char **argv, char **env)
 			;
 		container->args = x;
 		executor(ac, argv, container, env);
-		for (x = 0; container->parsed[x]; x++)
-			free(container->parsed[x]);
-		free(container->parsed), free(container->input);
+		release(container);
+		if (!interactive_or_not())
+			exit(container->exit);
 	}
 	return (0);
 }
@@ -108,3 +107,18 @@ int commence(char *str, char *ptr)
 	return (0);
 }
 
+/**
+ * release - frees memory
+ * @container: struct
+ */
+void release(structo *container)
+{
+	int x;
+
+	for (x = 0; container->parsed[x]; x++)
+	{
+		free(container->parsed[x]);
+	}
+	free(container->parsed);
+	free(container->input);
+}

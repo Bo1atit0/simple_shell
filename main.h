@@ -49,6 +49,7 @@ int hsh(int, char **, char **);
 int commence(char *str, char *ptr);
 char *command(char **env, char *str);
 char *env_opt(char **env, char *str);
+void release(structo *);
 
 /** get_input.c **/
 int _getline(structo *);
