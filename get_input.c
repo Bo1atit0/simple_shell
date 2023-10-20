@@ -25,7 +25,7 @@ int _getline(structo *container)
 
 	for (y = 0; strint[y]; y++)
 	{
-		if (strint[y] == '#')
+		if (strint[y] == '#' && y != 0)
 		{
 			y--;
 			if (strint[y] == ' ')
@@ -35,7 +35,7 @@ int _getline(structo *container)
 			}
 			else
 			{
-				y++;
+				break;
 			}
 		}
 	}

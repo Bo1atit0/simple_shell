@@ -22,26 +22,26 @@ int hsh(int ac, char **argv, char **env)
 	{
 		/** set_readfd(structure, argv); **/
 	}
-
 	while (1)
 	{
 		signal(SIGINT, handle_sig);
 		if (interactive_or_not())
-		{
 			printf("$ ");
-		}
 		line = _getline(container);
 		if (line == -1)
 		{
 			if (interactive_or_not())
-			{
 				putchar('\n');
-			}
 			return (EXIT_FAILURE);
 			/* handle error */
 		}
-		if (*container->input == '\n' || *container->input == '\0')
+		if (*container->input == '\n' || *container->input == '\0'
+				|| *container->input == '#')
+		{
+			if (container->input != NULL)
+				free(container->input);
 			continue;
+		}
 		parse_ret = parse_line(container);
 		if (parse_ret == -1)
 			/** handler error **/
