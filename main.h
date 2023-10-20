@@ -16,12 +16,12 @@
 
 
 /**
- * struct formation - my container
- * @input: a pointer to the input from user
- * @parsed: parsed input
- * @inst: instrunctions
- * @exit: exitstatus
- * @args: arguments
+ * struct formation - my container.
+ * @input: a pointer to the input from user.
+ * @parsed: parsed input.
+ * @inst: instrunctions.
+ * @exit: exitstatus.
+ * @args: arguments.
  */
 typedef struct formation
 {

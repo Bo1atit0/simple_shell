@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * _getline - get input from user
- * @container: struct pointer
- * Return: returns int
+ * _getline - get input from user.
+ * @container: struct pointer.
+ * Return: returns int.
  */
 int _getline(structo *container)
 {
@@ -47,9 +47,10 @@ int _getline(structo *container)
 }
 
 /**
- * interactive_or_not - from stdin or not
- * Return: int
+ * interactive_or_not - from stdin or not.
+ * Return: int.
  */
+
 int interactive_or_not(void)
 {
 	return (isatty(STDIN_FILENO));
@@ -57,9 +58,10 @@ int interactive_or_not(void)
 
 
 /**
- * handle_sig - handle signals
- * @it: int
+ * handle_sig - handle signals.
+ * @it: int.
  */
+
 void handle_sig(int it)
 {
 	int x = 0;

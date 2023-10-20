@@ -2,13 +2,13 @@
 
 
 /**
- * command - searches for executable file
- * @env: environment variables
- * @str: string to search for
+ * command - searches for executable file.
+ * @env: environment variables,
+ * @str: string to search for,
  *
  * Description: Searches for an executable file named 'str' in the
  * directories listed in the 'PATH' environment variable.
- * Return: str if successful and Null if not
+ * Return: str if successful and Null if not.
  */
 
 char *command(char **env, char *str)
