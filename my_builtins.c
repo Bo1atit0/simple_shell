@@ -56,19 +56,33 @@ int _my_env(structo *container, char **env)
  */
 int _my_exit(structo *container, char **env)
 {
-	int y = 0, x = 0;
+int y = 0, x = 0, z = 0;
 
-	(void)env;
+(void)env;
 
-	if (container->args == 2)
-	{
-		y = atoi(container->parsed[1]);
-		for (x = 0; container->parsed[x]; x++)
-		{
-			free(container->parsed[x]);
-		}
-		free(container->parsed);
-		free(container->input);
+if (container->args == 2)
+{
+y = atoi(container->parsed[1]);
+for (x = 0; container->parsed[x]; x++)
+{
+free(container->parsed[x]);  
+}
+free(container->parsed);
+free(container->input);
+
+exit(y);
+}
+else
+{
+for (z = 0; container->parsed[z]; z++)
+{
+free(container->parsed[z]); 
+}
+free(container->parsed);
+free(container->input);
+exit(0);
+}
+return (3);
 
 		exit(y);
 	}
@@ -82,6 +96,4 @@ int _my_exit(structo *container, char **env)
 		free(container->input);
 		exit(0);
 	}
-
-	return (3);
 }

@@ -15,43 +15,43 @@
 int hsh(int ac, char **argv, char **env)
 {
 	structo container[] = {{NULL}, {NULL}, {NULL}, {0}, {0}};
-	int x, line, parse_ret; /** executor_ret = 0; **/
+	int x, line, parse_ret, executor_ret = 0;
 
 	(void)argv;
-	if (ac == 2)
-	{
-		/** set_readfd(structure, argv); **/
-	}
-
 	while (1)
 	{
 		signal(SIGINT, handle_sig);
 		if (interactive_or_not())
-		{
 			printf("$ ");
-		}
 		line = _getline(container);
 		if (line == -1)
 		{
 			if (interactive_or_not())
-			{
 				putchar('\n');
-			}
 			return (EXIT_FAILURE);
-			/* handle error */
 		}
-		if (*container->input == '\n' || *container->input == '\0')
+		if (*container->input == '\n' || *container->input == '\0'
+				|| *container->input == '#')
+		{
+			if (container->input != NULL)
+				free(container->input);
 			continue;
+		}
 		parse_ret = parse_line(container);
 		if (parse_ret == -1)
-			/** handler error **/
+		{
+			if (!interactive_or_not())
+				printf("\n");
+			free(container->input);
+			continue;
+		}
 		for (x = 0; container->parsed[x]; x++)
 			;
 		container->args = x;
-		executor(ac, argv, container, env);
-		for (x = 0; container->parsed[x]; x++)
-			free(container->parsed[x]);
-		free(container->parsed), free(container->input);
+		executor_ret = executor(ac, argv, container, env), release(container);
+		if (executor_ret == 2)
+			if (!interactive_or_not())
+				exit(container->exit);
 	}
 	return (0);
 }
@@ -107,3 +107,18 @@ int commence(char *str, char *ptr)
 	return (0);
 }
 
+/**
+ * release - frees memory
+ * @container: struct
+ */
+void release(structo *container)
+{
+	int x;
+
+	for (x = 0; container->parsed[x]; x++)
+	{
+		free(container->parsed[x]);
+	}
+	free(container->parsed);
+	free(container->input);
+}

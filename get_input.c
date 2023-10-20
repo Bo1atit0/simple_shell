@@ -25,13 +25,17 @@ int _getline(structo *container)
 
 	for (y = 0; strint[y]; y++)
 	{
-		if (strint[y] == '#')
+		if (strint[y] == '#' && y != 0)
 		{
-			y++;
+			y--;
 			if (strint[y] == ' ')
 			{
-				y--;
+				y++;
 				strint[y] = '\0';
+			}
+			else
+			{
+				break;
 			}
 		}
 	}
