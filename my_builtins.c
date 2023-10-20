@@ -80,7 +80,7 @@ int _my_exit(structo *container, char **env)
 		}
 		free(container->parsed);
 		free(container->input);
-		exit(2);
+		exit(0);
 	}
 
 	return (3);
