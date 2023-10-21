@@ -84,16 +84,5 @@ exit(0);
 }
 return (3);
 
-		exit(y);
-	}
-	else
-	{
-		for (x = 0; container->parsed[x]; x++)
-		{
-			free(container->parsed[x]);
-		}
-		free(container->parsed);
-		free(container->input);
-		exit(0);
-	}
+
 }
