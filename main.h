@@ -84,6 +84,6 @@ size_t our_strlen(const char *s);
 int is_delimiter(char ch, const char *delim);
 
 
-char *our_strtok(char *str, char *delim);
+char *str_tok(char *str, const char *delim);
 ssize_t our_getline(char **storage, size_t *size, FILE *stream);
 #endif
