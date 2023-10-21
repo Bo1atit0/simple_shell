@@ -137,7 +137,8 @@ perror("Error: ");
 
 else
 {
-wait(&hold);
+	waitpid(pid, &hold, 0);
+/* Parent process code (should wait for child) */
 if (WIFEXITED(hold) && WEXITSTATUS(hold) != 0)
 {
 exit(2);
