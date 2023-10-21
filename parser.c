@@ -27,38 +27,33 @@ int parse_line(structo *container)
 
 	dup = strdup(container->input);
 
-	parsed = strtok(dup, " \n\t");
+	parsed = str_tok(dup, " \n\t");
 	x = 0;
 	while (parsed != NULL)
 	{
 		x++;
-		parsed = strtok(NULL, " \n\t");
+		parsed = str_tok(NULL, " \n\t");
 	}
 	x++;
 	free(dup);
 
-
 	container->parsed = malloc(sizeof(char *) * x);
-
-	parsed = strtok(container->input, " \n\t");
-
+	parsed = str_tok(container->input, " \n\t");
 	if (parsed != NULL)
 	{
 		for (x = 0; parsed != NULL; x++)
 		{
 			container->parsed[x] = duplicate(parsed);
-			parsed = strtok(NULL, " \n\t");
+			parsed = str_tok(NULL, " \n\t");
 		}
 
 		container->parsed[x] = NULL;
 	}
-
 	else
 	{
 		free(container->parsed);
 		return (-1);
 	}
-
 	return (0);
 }
 
