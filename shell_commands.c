@@ -138,5 +138,9 @@ perror("Error: ");
 else
 {
 wait(&hold);
+if (WIFEXITED(hold) && WEXITSTATUS(hold) != 0)
+{
+exit(2);
+}
 }
 }
